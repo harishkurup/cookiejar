@@ -1,14 +1,28 @@
 var cookiejar = (function() {
   return{
     set: function(key, value, options){
+      options = (options !== undefined) ? options : {};
       var expires = (options.expires !== undefined) ? options.expires : '';
       if(typeof(expires) === 'number') {
         expires = ';expires='+ new Date(+new Date + 1000 * 60 * 60 * 24 * expires);
+      } else if(typeof(expires) === 'object') {
+        var type = (expires.type !== undefined) ? expires.type : 'day'; // default day
+        expires = expires.value;
+        if(type == 'day') {
+          console.log("here");
+          expires = ';expires='+ new Date(+new Date + 1000 * 60 * 60 * 24 * expires);
+        } else if(type == 'hrs') {
+          expires = ';expires='+ new Date(+new Date + 1000 * 60 * 60 * expires);
+        } else if(type == 'min') {
+          expires = ';expires='+ new Date(+new Date + 1000 * 60 * expires);
+        } else {
+          expires = ';expires='+ new Date(+new Date + 1000 * expires);
+        }
       }
       var path = (options.path !== undefined) ? ';path='+options.path : '';
       var domain = (options.domain !== undefined) ? ';domain='+options.domain : '';
       var secure = (options.secure !== undefined) ? ';secure='+options.secure : '';
-      document.cookie = key+'='+value+';'+expires+path+domain+secure;
+      document.cookie = encodeURIComponent(key)+'='+encodeURIComponent(value)+';'+expires+path+domain+secure;
       return this;
     },
     get: function(key) {
@@ -24,8 +38,8 @@ var cookiejar = (function() {
         var cookies = document.cookie.split(';');
         for(var i = 0; i < cookies.length; i++) {
           var cookie = cookies[i].split('=');
-          var key = cookie.shift().replace(' ', '');
-          var value = cookie.shift();
+          var key = decodeURIComponent(cookie.shift().replace(' ', ''));
+          var value = decodeURIComponent(cookie.shift());
           cookie_list[key] = value;
         }
       }
@@ -44,6 +58,6 @@ var cookiejar = (function() {
         this.remove(key);
       }
       return this;
-    },
+    }
   };
 })();
