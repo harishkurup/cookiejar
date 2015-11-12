@@ -9,7 +9,6 @@ var cookiejar = (function() {
         var type = (expires.type !== undefined) ? expires.type : 'day'; // default day
         expires = expires.value;
         if(type == 'day') {
-          console.log("here");
           expires = ';expires='+ new Date(+new Date + 1000 * 60 * 60 * 24 * expires);
         } else if(type == 'hrs') {
           expires = ';expires='+ new Date(+new Date + 1000 * 60 * 60 * expires);
@@ -58,6 +57,9 @@ var cookiejar = (function() {
         this.remove(key);
       }
       return this;
+    },
+    enabled: function(){
+      return navigator.cookieEnabled;
     }
   };
 })();
