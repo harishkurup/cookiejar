@@ -1,0 +1,21 @@
+{
+  "name": "cookiejar",
+  "main": "cookiejar.js",
+  "homepage": "https://github.com/harishkurup/cookiejar",
+  "authors": [
+    "harishkurup <inbox30@gmail.com>"
+  ],
+  "description": "A small javascript library to handle cookies.",
+  "moduleType": [],
+  "keywords": [
+    "cookie"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
