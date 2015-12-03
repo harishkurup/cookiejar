@@ -1,8 +1,6 @@
 var cookiejar = (function() {
   return{
-    set: function(key, value, options){
-      options = (options !== undefined) ? options : {};
-      var expires = (options.expires !== undefined) ? options.expires : '';
+    expires: function(expires){
       if(typeof(expires) === 'number') {
         expires = ';expires='+ new Date(+new Date + 1000 * 60 * 60 * 24 * expires);
       } else if(typeof(expires) === 'object') {
@@ -18,6 +16,11 @@ var cookiejar = (function() {
           expires = ';expires='+ new Date(+new Date + 1000 * expires);
         }
       }
+      return expires;
+    },
+    set: function(key, value, options){
+      options = (options !== undefined) ? options : {};
+      var expires = (options.expires !== undefined) ? this.expires(options.expires) : '';
       var path = (options.path !== undefined) ? ';path='+options.path : '';
       var domain = (options.domain !== undefined) ? ';domain='+options.domain : '';
       var secure = (options.secure !== undefined) ? ';secure='+options.secure : '';
