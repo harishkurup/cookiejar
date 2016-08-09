@@ -4,6 +4,9 @@ A small javascript library to handle cookies.
 Download cookiejar.js and include it in your HTML document.
 <script src='cookiejar.js'></script>
 
+Bower:
+$ bower install cookiejar
+
 # Methods:-
 # Set cookies
 You can use the cookiejar.set() to set cookies.
