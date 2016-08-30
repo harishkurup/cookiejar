@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Qunit- cookiejar test</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+  </head>
+  <body>
+
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+  <script src="/cookiejar.js"></script>
+  <script>
+  // Basic test cases
+  QUnit.test( "Cookie Jar Test", function( assert ) {
+    assert.equal(cookiejar.enabled(), true, 'Will return true if the cookie is enabled on browser.');
+
+    // set a cookie and check if cookie exist
+    cookiejar.set('band', 'coldplay');
+    assert.equal(cookiejar.get('band'), 'coldplay', 'Set and check if cookie exist.');
+
+    // remove cookie and check if cookie exist
+    cookiejar.remove('band');
+    assert.equal(cookiejar.get('band'), null, 'Should return null.');
+
+    // get cookie list
+    cookiejar.set('band', 'coldplay');
+    cookiejar.set('song', 'a head full of dreams');
+    cookiejar.set('album', 'head full of dreams');
+
+    var cookie_list = {'band': 'coldplay', 'song': 'a head full of dreams', 'album': 'head full of dreams'};
+    assert.deepEqual(cookiejar.all(), cookie_list, 'Check the list of cookie.');
+
+    // set and remove a cookie
+    var expected_cookie_list = {'band': 'coldplay', 'song': 'a head full of dreams'};
+    cookiejar.remove('album');
+    assert.deepEqual(cookiejar.all(), expected_cookie_list, 'Check the key is reoved.');
+
+    // remove all and check for empty
+    cookiejar.empty();
+    assert.deepEqual(cookiejar.all(), {}, 'Check for empty list.');
+
+  });
+  </script>
+  </body>
+</html>
