@@ -2,31 +2,35 @@
 A small javascript library to handle cookies.
 # How to use
 Download cookiejar.js and include it in your HTML document.
-<script src='cookiejar.js'></script>
+<pre><script src='cookiejar.js'></script></pre>
 
 Bower:
-$ bower install cookiejar
+<pre>$ bower install cookiejar</pre>
 
 # Methods:-
 # Set cookies
-You can use the cookiejar.set() to set cookies.
-cookiejar.set("key", "value");
+You can use the <pre>cookiejar.set()</pre> to set cookies.
+
+<pre>cookiejar.set("key", "value");</pre>
+
 you can send optional options object as parameters,
+
+<pre>
 var options = {
   'expires' : 7, // number of days in integer
   'path' :  '/',
   'domain' : '',
   'secure' : true // boolean
 };
-cookiejar.set("key", "value", options);
+cookiejar.set("key", "value", options);</pre>
 
 # Get cookies
-You can use the cookiejar.get() to fetch a cookie value.
-cookiejar.get('key');
-To fetch all the values, use cookiejar.all().
-cookiejar.all(); // returns the object containing cookies.
+You can use the <pre>cookiejar.get()</pre> to fetch a cookie value.
+<pre>cookiejar.get('key');</pre>
+To fetch all the values, use <pre>cookiejar.all()</pre>
+<pre>cookiejar.all();</pre> // returns the object containing cookies.
 
 # Remove cookies
-You can use the cookiejar.remove() to remove the cookie value.
-cookiejar.remove('key');
-And cookiejar.empty() to remove all cookies.
+You can use the <pre>cookiejar.remove()</pre> to remove the cookie value.
+<pre>cookiejar.remove('key');</pre>
+And <pre>cookiejar.empty()</pre> to remove all cookies.
